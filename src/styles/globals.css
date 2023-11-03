@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-Poppins;
+  }
+
+  section {
+    @apply mobile:py-20 Sdesktop:py-24 w-full tablet:py-24;
+  }
+  .title {
+    @apply mobile:text-2xl font-bold capitalize text-2xl text-primary;
+  }
+  .subtitle {
+    @apply text-lg Sdesktop:text-lg  text-secondary font-normal mb-5;
+  }
+
+  .btn-md {
+    @apply h-[60px] px-[16px] text-lg font-normal rounded-md;
+  }
+  .btn-sm {
+    @apply h-[50px] px-[10px] text-base font-normal rounded-md;
+  }
+  .btn-accent {
+    @apply text-white bg-accent  hover:bg-accent/60;
+  }
+  .btn-white {
+    @apply text-accent bg-white hover:bg-white/90;
+  }
+  .btn-outline {
+    @apply bg-transparent text-accent border border-accent  hover:bg-accent hover:text-white;
+  }
+  .btn-line {
+    @apply bg-accent text-white border border-accent  hover:bg-accent/70  hover:text-white;
+  }
+  .btn-link {
+    @apply text-accent bg-accent text-xl Sdesktop:text-2xl;
+  }
+
+  .carouselItem {
+    @apply pr-10;
+  }
+
+
+
+}
+
+@layer utilities {
+  .containers {
+    max-width: 1024px;
+    margin: auto;
+  }
+}

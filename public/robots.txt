@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://koleksiproperti.com/
+
+# Sitemaps
+Sitemap: https://koleksiproperti.com/sitemap.xml
