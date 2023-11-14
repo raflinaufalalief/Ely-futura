@@ -22,13 +22,14 @@ const Navbar = () => {
       <div className="px-4 py-5 containers ">
         <div className="flex justify-between Sdesktop:items-center">
           <Link href="/">
-            <Image
-              className="w-[125px]"
-              src="/assets/logo.png"
-              width={500}
-              height={100}
-              alt="logo"
-            />
+
+              <Image
+                className="w-[90px]"
+                src="/assets/logo-futura.png"
+                width={500}
+                height={100}
+                alt="logo"
+              />
           </Link>
           <nav className="flex items-center">
             <div

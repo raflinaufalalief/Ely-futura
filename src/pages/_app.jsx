@@ -3,6 +3,7 @@ import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import "@/styles/globals.css"
 import { defaultSEO } from "@/components/Seo"
+import TawkToScript from "@/components/TawkToScript"
 
 export default function App({ Component, pageProps }) {
   const seo = {
@@ -25,6 +26,7 @@ export default function App({ Component, pageProps }) {
       <Navbar />
       <Component {...pageProps} />
       <Footer />
+      <TawkToScript />
     </>
-  )
+  );
 }

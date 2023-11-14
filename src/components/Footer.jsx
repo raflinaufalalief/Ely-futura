@@ -1,5 +1,6 @@
 import Link from "next/link"
 import React from "react"
+import TawkToScript from "./TawkToScript"
 
 const Footer = () => {
   return (
@@ -15,9 +16,11 @@ const Footer = () => {
               . All Rights Reserved.
             </span>
           </div>
+         
         </div>
       </div>
     </div>
+    
   )
 }
 

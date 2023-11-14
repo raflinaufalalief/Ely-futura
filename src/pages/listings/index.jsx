@@ -1,21 +1,31 @@
-// pages/listing.js
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { BiBath, BiBed } from "react-icons/bi";
-import CustomPagination from "@/components/CustomPagination";
 import { IoAlertCircleOutline } from "react-icons/io5";
 import Head from "next/head";
 import { defaultSEO } from "@/components/Seo";
 import FilterProduct from "@/components/FilterProduct";
+import CustomPagination from "@/components/CustomPagination";
 
 const ITEMS_PER_PAGE = 12;
 const ALERT_MESSAGE = "Mohon Maaf Property Belum Tersedia ";
 const ALERT_INFORMASI = "Pesan Informasi";
 const seo = {
-  ...defaultSEO,
   title: "All-listing | Koleksiproperty",
+  // ... (other SEO properties)
+};
+
+const getStatusLabel = (product) => {
+  if (product.status && product.status.length > 0) {
+    return product.status[0].nama_status || "Unknown Status";
+  }
+  return "Unknown Status";
+};
+
+const isStatusAvailable = (product) => {
+  return product.status && product.status.length > 0;
 };
 
 const Listing = ({ initialProducts }) => {
@@ -91,7 +101,18 @@ const Listing = ({ initialProducts }) => {
             ) : (
               paginatedProducts.map((product) => (
                 <div key={product.id}>
-                  <div className="relative w-full mx-auto ">
+                  <div
+                    className={`relative w-full mx-auto ${
+                      isStatusAvailable(product) ? "brightness-50" : ""
+                    }`}
+                  >
+                    {isStatusAvailable(product) && (
+                      <div className="absolute z-30 py-10 text-center inset-10">
+                        <p className="p-2 text-lg font-bold text-red-500 uppercase bg-red-100 border rounded">
+                          {getStatusLabel(product)}
+                        </p>
+                      </div>
+                    )}
                     <div className="p-4 bg-white border rounded shadow-lg">
                       <div className="relative flex justify-center overflow-hidden rounded h-52">
                         <div className="w-full transition-transform duration-500 ease-in-out transform hover:scale-110">
@@ -103,11 +124,19 @@ const Listing = ({ initialProducts }) => {
                             />
                           </div>
                         </div>
-                        <span className="absolute top-0 left-0 z-10 inline-flex px-3 py-2 mt-3 ml-3 text-sm font-medium text-white bg-red-500 rounded select-none">
-                          {product.market
-                            .replace(/\[|\]|"/g, "")
-                            .replace(/,/g, "/")}
-                        </span>
+                        {isStatusAvailable(product) ? (
+                          // If status is available, don't display market and status information
+                          <></>
+                        ) : (
+                          // Only display market information if status is not available
+                          <span
+                            className={`absolute top-0 left-0 z-10 inline-flex px-3 py-2 mt-3 ml-3 text-sm font-medium text-white bg-red-500 rounded select-none`}
+                          >
+                            {product.market
+                              .replace(/\[|\]|"/g, "")
+                              .replace(/,/g, "/")}
+                          </span>
+                        )}
                       </div>
                       <div className="mt-4">
                         <div className="flex mb-4 text-sm">
@@ -147,13 +176,22 @@ const Listing = ({ initialProducts }) => {
                           </p>
                         </div>
                       </div>
-                      <div className="grid grid-cols-2 mt-5">
-                        <div className="flex items-center">
-                          <p className="font-medium text-black/80 line-clamp-1">
-                            Rp {product.harga}
-                          </p>
-                        </div>
-                        <div className="flex items-end justify-end">
+                      <div className="flex items-center justify-between ">
+                        {isStatusAvailable(product) ? (
+                          // If status is available, display status label
+                          <div className="flex justify-end"></div>
+                        ) : (
+                          // If status is not available, display price
+                          <div className="flex justify-start mt-5">
+                            <div className="">
+                              <p className="font-medium text-black/80 line-clamp-1">
+                                Rp {product.harga}
+                              </p>
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="flex items-center justify-end mt-5">
                           <Link href={`/listings/${product.slug}`}>
                             <div className="font-medium text-accent hover:underline">
                               Detail

@@ -34,13 +34,13 @@ const ProfileCard = ({ pesanwa }) => {
         <div className="mobile:sticky">
           <hr className="my-5 rounded-full bg-black/10" />
           <div className="my-5">
-            <a
+            {/* <a
               href="tel:+6282233335227"
               className="flex items-center justify-center w-full py-2 text-sm font-normal bg-transparent border rounded-lg shadow-md gap-x-2 hover:bg-slate-200 "
             >
               <BsTelephone className="text-lg" />
               +62 822-3333-5227
-            </a>
+            </a> */}
           </div>
           <div>
             <a

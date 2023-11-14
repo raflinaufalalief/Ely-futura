@@ -80,10 +80,14 @@ const Profile = () => {
               </div>
               <div className="py-5 mt-10 text-center border-t py- border-blueGray-200">
                 <div className="flex flex-wrap justify-center">
-                  <div className="w-full px-4 Sdesktop:w-9/12">
-                    <p className="mb-4 text-lg leading-relaxed text-secondary mobile:text-sm">
-                      Perkenalkan saya Ely, Profesi saya sebagai property
-                      consultant, Saya sudah bergerak di bidang ini sejak 2009.
+                  <div className="w-full px-4 Sdesktop:w-10/12">
+                    <p className="mb-4 leading-relaxed text-md text-secondary mobile:text-sm">
+                      Perkenalkan saya Ely Futura Property. Bermula dari suami
+                      saya terjun terlebih dahulu di dunia property, saya mulai
+                      mengenal dan tertarik. Akhir ny saya memutuskan untuk ikt
+                      sm2 bekerja di Futura Property sebagai agen yg siap
+                      melayani anda untuk menjual-membeli atau ingin menyewa
+                      property, sesuai dengan kebutuhan anda.
                     </p>
                   </div>
                 </div>
@@ -93,7 +97,7 @@ const Profile = () => {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default Profile
