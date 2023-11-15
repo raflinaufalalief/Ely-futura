@@ -107,8 +107,8 @@ const Listing = ({ initialProducts }) => {
                     }`}
                   >
                     {isStatusAvailable(product) && (
-                      <div className="absolute z-30 py-10 text-center inset-10">
-                        <p className="p-2 text-lg font-bold text-red-500 uppercase bg-red-100 border rounded">
+                      <div className="absolute z-30 py-16 text-center inset-10">
+                        <p className="p-2 text-lg font-bold text-white uppercase bg-black border rounded">
                           {getStatusLabel(product)}
                         </p>
                       </div>
@@ -154,9 +154,9 @@ const Listing = ({ initialProducts }) => {
                             <div key={id}>{name}</div>
                           ))}
                         </div>
-                        <p className="mt-2 text-sm text-black/80 line-clamp-1">
+                        {/* <p className="mt-2 text-sm text-black/80 line-clamp-1">
                           {product.area}
-                        </p>
+                        </p> */}
                       </div>
                       <div className="flex mt-2 text-sm">
                         <div className="flex space-x-5 overflow-hidden">

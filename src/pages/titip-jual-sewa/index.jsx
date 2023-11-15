@@ -345,7 +345,7 @@ const handlePPChange = (e) => {
               />
               {!isNamaValid && (
                 <p className="mt-1 text-sm text-red-500">
-                  Tolong dilengkapi nama anda dengan benar.
+                  tolong diisi terlebih dahulu
                 </p>
               )}
             </div>
@@ -405,7 +405,7 @@ const handlePPChange = (e) => {
               />
               {!isValidAlamat && (
                 <p className="mt-1 text-sm text-red-500">
-                  Tolong dilengkapi alamatnya
+                  tolong diisi terlebih dahulu
                 </p>
               )}
             </div>
@@ -430,7 +430,7 @@ const handlePPChange = (e) => {
                 </select>
                 {!isValidKategori && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong di pilih terlebih dahulu
+                    tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -450,7 +450,9 @@ const handlePPChange = (e) => {
                   <option value="Secondary">Secondary</option>
                 </select>
                 {!isValidProduct && (
-                  <p className="mt-1 text-sm text-red-500">tolong dilengkapi</p>
+                  <p className="mt-1 text-sm text-red-500">
+                    tolong diisi terlebih dahulu
+                  </p>
                 )}
               </div>
               <div className="mb-4">
@@ -472,7 +474,7 @@ const handlePPChange = (e) => {
                 </select>
                 {!isValidTransaksi && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong dilengkapi
+                    tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -496,7 +498,7 @@ const handlePPChange = (e) => {
                 </select>
                 {!isValidPerProp && (
                   <p className="mt-1 text-sm text-red-500">
-                    Silakan pilih perlengkapan properti.
+                    tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -515,7 +517,7 @@ const handlePPChange = (e) => {
                 />
                 {!isValidHarga && (
                   <p className="mt-1 text-sm text-red-500">
-                    Tolong di isi harga
+                    tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -553,7 +555,9 @@ const handlePPChange = (e) => {
                   placeholder="masukan jumlah kamar mandi"
                 />
                 {!isValidKM && (
-                  <p className="mt-1 text-sm text-red-500">test</p>
+                  <p className="mt-1 text-sm text-red-500">
+                    tolong diisi terlebih dahulu
+                  </p>
                 )}
               </div>
               <div className="mb-4">
@@ -571,7 +575,9 @@ const handlePPChange = (e) => {
                   placeholder="masukan jumlah kamar tidur"
                 />
                 {!isValidKT && (
-                  <p className="mt-1 text-sm text-red-500">test</p>
+                  <p className="mt-1 text-sm text-red-500">
+                    tolong diisi terlebih dahulu
+                  </p>
                 )}
               </div>
 
@@ -588,7 +594,9 @@ const handlePPChange = (e) => {
                   placeholder="masukan jumlah luas tanah"
                 />
                 {!isValidLt && (
-                  <p className="mt-1 text-sm text-red-500">testinG BRO</p>
+                  <p className="mt-1 text-sm text-red-500">
+                    tolong diisi terlebih dahulu
+                  </p>
                 )}
               </div>
               <div className="mb-4">
@@ -606,7 +614,9 @@ const handlePPChange = (e) => {
                   placeholder="masukan jumlah luas bangunan"
                 />
                 {!isValidLb && (
-                  <p className="mt-1 text-sm text-red-500">testinggg</p>
+                  <p className="mt-1 text-sm text-red-500">
+                    tolong diisi terlebih dahulu
+                  </p>
                 )}
               </div>
               <div className="mb-4">
@@ -622,7 +632,9 @@ const handlePPChange = (e) => {
                   placeholder="masukan kwh listrik"
                 />
                 {!isValidListrik && (
-                  <p className="mt-1 text-sm text-red-500">tesTING</p>
+                  <p className="mt-1 text-sm text-red-500">
+                    tolong diisi terlebih dahulu
+                  </p>
                 )}
               </div>
 
@@ -639,7 +651,9 @@ const handlePPChange = (e) => {
                   placeholder="masukan hadap"
                 />
                 {!isValidHadap && (
-                  <p className="mt-1 text-sm text-red-500">tes</p>
+                  <p className="mt-1 text-sm text-red-500">
+                    tolong diisi terlebih dahulu
+                  </p>
                 )}
               </div>
             </div>
@@ -656,7 +670,11 @@ const handlePPChange = (e) => {
                 required
                 placeholder="masukan deskripsi untuk keterangan tentang properti yang ingin dijual/disewa"
               />
-              {!isValidDes && <p className="mt-1 text-sm text-red-500">tes</p>}
+              {!isValidDes && (
+                <p className="mt-1 text-sm text-red-500">
+                  tolong diisi terlebih dahulu
+                </p>
+              )}
             </div>
 
             <button

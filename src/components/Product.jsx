@@ -30,7 +30,7 @@ function Product() {
       try {
         const response = await fetch(process.env.NEXT_PUBLIC_API_URL)
         const apiData = await response.json()
-        setProducts(apiData.products)
+        setProducts(apiData.products.slice(0, 6));
       } catch (error) {
         console.error("Error fetching data:", error)
       }

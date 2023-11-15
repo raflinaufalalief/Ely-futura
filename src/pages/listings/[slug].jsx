@@ -86,7 +86,10 @@ const DetailProduct = ({ products }) => {
                       ))}
                     </h4>
                   </div>
-                  <h1>{products.market.replace(/\[|\]|"/g, "")}</h1>
+                  <h1>
+                    {products.market.replace(/\[|\]|"/g, "").replace(/,/g, "/")}
+                  </h1>
+
                   <p>{products.title}</p>
                   <p>Rp {products.harga}</p>
                   <h4>
