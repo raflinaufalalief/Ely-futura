@@ -1,10 +1,6 @@
-import { defaultSEO } from "@/components/Seo"
-import Head from "next/head"
-import { useState } from "react"
-
-
-
-
+import { defaultSEO } from "@/components/Seo";
+import Head from "next/head";
+import { useState } from "react";
 
 const formatPhoneNumber = (value) => {
   // Remove non-numeric characters
@@ -28,15 +24,14 @@ const formatPhoneNumber = (value) => {
   return result;
 };
 
-
 const PropertyForm = () => {
   const seo = {
     ...defaultSEO,
     title: "TitipJualSewa | Koleksiproperti", // Judul khusus untuk halaman About
-  }
-   const [judulIklan, setJudulIklan] = useState("");
-   const [noTandaPengenal, setNoTandaPengenal] = useState("");
-   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
+  };
+  const [judulIklan, setJudulIklan] = useState("");
+  const [noTandaPengenal, setNoTandaPengenal] = useState("");
+  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
   const [isNumberidValid, setIsNumberIdValid] = useState(true);
   const [isNamaValid, setIsNamaValid] = useState(true);
   const [isValidAlamat, setIsValidAlamat] = useState(true);
@@ -53,258 +48,163 @@ const PropertyForm = () => {
   const [isValidKategori, setIsValidKategori] = useState(true);
   const [isValidProduct, setIsValidProduct] = useState(true);
   const [isValidTransaksi, setIsValidTransaksi] = useState(true);
-  
-   const [harga, setHarga] = useState("");
-   const [jenisTransaksi, setJenisTransaksi] = useState("");
-   const [sertifikat, setSertifikat] = useState("");
-   const [kamarMandi, setKamarMandi] = useState("");
-   const [kamarTidur, setKamarTidur] = useState("");
-   const [luasTanah, setLuasTanah] = useState("");
-   const [luasBangunan, setLuasBangunan] = useState("");
-   const [deskripsi, setDeskripsi] = useState("");
-   const [kategori, setKategori] = useState("");
-   const [product, setProduct] = useState("");
-   const [perlengkapanProperti, setPerlengkapanProperti] = useState("");
-   const [noHandphone, setNoHandphone] = useState("");
-   const [alamat, setAlamat] = useState("");
-   const [listrik, setListrik] = useState("");
+
+  const [harga, setHarga] = useState("");
+  const [jenisTransaksi, setJenisTransaksi] = useState("");
+  const [sertifikat, setSertifikat] = useState("");
+  const [kamarMandi, setKamarMandi] = useState("");
+  const [kamarTidur, setKamarTidur] = useState("");
+  const [luasTanah, setLuasTanah] = useState("");
+  const [luasBangunan, setLuasBangunan] = useState("");
+  const [deskripsi, setDeskripsi] = useState("");
+  const [kategori, setKategori] = useState("");
+  const [product, setProduct] = useState("");
+  const [perlengkapanProperti, setPerlengkapanProperti] = useState("");
+  const [noHandphone, setNoHandphone] = useState("");
+  const [alamat, setAlamat] = useState("");
+  const [listrik, setListrik] = useState("");
   const [hadap, setHadap] = useState("");
-  
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  
- const handleSubmit = (e) => {
-   e.preventDefault();
+    const messageText =
+      `Judul Iklan: ${judulIklan}\n` +
+      `Jenis Transaksi: ${jenisTransaksi}\n` +
+      `Harga: ${harga}\n` +
+      `Sertifikat: ${sertifikat}\n` +
+      `Kamar Mandi: ${kamarMandi}\n` +
+      `Kamar Tidur: ${kamarTidur}\n` +
+      `Luas Tanah: ${luasTanah}\n` +
+      `Luas Bangunan: ${luasBangunan}\n` +
+      `Kategori: ${kategori}\n` +
+      `Product: ${product}\n` +
+      `Deskripsi: ${deskripsi}\n` +
+      `Perlengkapan Properti: ${perlengkapanProperti}\n` +
+      `No Tanda Pengenal/KTP: ${noTandaPengenal}\n` +
+      `No Handphone: ${noHandphone}\n` +
+      `Alamat: ${alamat}\n` +
+      `Listrik: ${listrik}\n` +
+      `Hadap: ${hadap}\n`;
 
+    const whatsappLink = `https://api.whatsapp.com/send?phone=${encodeURIComponent(
+      "+6287789070758"
+    )}&text=${encodeURIComponent(messageText)}`;
 
-   const messageText =
-     `Judul Iklan: ${judulIklan}\n` +
-     `Jenis Transaksi: ${jenisTransaksi}\n` +
-     `Harga: ${harga}\n` +
-     `Sertifikat: ${sertifikat}\n` +
-     `Kamar Mandi: ${kamarMandi}\n` +
-     `Kamar Tidur: ${kamarTidur}\n` +
-     `Luas Tanah: ${luasTanah}\n` +
-     `Luas Bangunan: ${luasBangunan}\n` +
-     `Kategori: ${kategori}\n` +
-     `Product: ${product}\n` +
-     `Deskripsi: ${deskripsi}\n` +
-     `Perlengkapan Properti: ${perlengkapanProperti}\n` +
-     `No Tanda Pengenal/KTP: ${noTandaPengenal}\n` +
-     `No Handphone: ${noHandphone}\n` +
-     `Alamat: ${alamat}\n` +
-     `Listrik: ${listrik}\n` +
-     `Hadap: ${hadap}\n`;
+    window.open(whatsappLink, "_blank");
+  };
 
-   const whatsappLink = `https://api.whatsapp.com/send?phone=${encodeURIComponent(
-     "+6287789070758"
-   )}&text=${encodeURIComponent(messageText)}`;
+  // Regex patterns for validation
+  const noTandaPengenalRegex = /^[0-9]{16}$/;
+  const noHandphoneRegex = /^[0-9]{11,14}$/;
+  const nonWhitespaceRegex = /\S/;
 
-   window.open(whatsappLink, "_blank");
- };
+  const handleNoTandaPengenalChange = (e) => {
+    const newValue = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+    const limitedValue = newValue.slice(0, 16); // Limit to 16 characters
+    setNoTandaPengenal(limitedValue);
 
- const handleNoTandaPengenalChange = (e) => {
-   const newValue = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
-   const limitedValue = newValue.slice(0, 16); // Limit to 16 characters
-   setNoTandaPengenal(limitedValue);
+    setIsNumberIdValid(noTandaPengenalRegex.test(limitedValue));
+  };
 
-   setIsNumberIdValid(limitedValue.length === 16);
- };
+  const handleNoHandphoneChange = (e) => {
+    const newValue = e.target.value.replace(/\D/g, ""); // Allow only numeric input
+    const limitedValue = newValue.slice(0, 14); // Limit to 14 characters
+    setNoHandphone(limitedValue);
 
+    setIsPhoneNumberValid(noHandphoneRegex.test(limitedValue));
+  };
 
- const handleNoHandphoneChange = (e) => {
-   const newValue = e.target.value.replace(/\D/g, ""); // Allow only numeric input
-   const limitedValue = newValue.slice(0, 14); // Limit to 14 characters
-   setNoHandphone(limitedValue);
-
-   setIsPhoneNumberValid(
-     limitedValue.length >= 11 && limitedValue.length <= 14
-   );
- };
- const handleJudulIklanChange = (e) => {
-   const newValue = e.target.value;
-   setJudulIklan(newValue);
-
-   if (newValue.trim().length > 0) {
-     setIsNamaValid(true);
-   } else {
-     setIsNamaValid(false);
-   }
- };
+  const handleJudulIklanChange = (e) => {
+    const newValue = e.target.value;
+    setJudulIklan(newValue);
+    setIsNamaValid(nonWhitespaceRegex.test(newValue));
+  };
 
   const handleAlamatChange = (e) => {
-    const newValue = e.target.value; // Remove leading and trailing whitespaces
+    const newValue = e.target.value;
     setAlamat(newValue);
-
-    if (newValue.length > 0) {
-      setIsValidAlamat(true);
-    } else {
-      setIsValidAlamat(false);
-    }
+    setIsValidAlamat(nonWhitespaceRegex.test(newValue));
   };
 
-
-  
   const handleHargaChange = (e) => {
-    const newValue = e.target.value; // Remove leading and trailing whitespaces
+    const newValue = e.target.value;
     setHarga(newValue);
-
-    if (newValue.length > 0) {
-      setIsValidHarga(true);
-    } else {
-      setIsValidHarga(false);
-    }
+    setIsValidHarga(nonWhitespaceRegex.test(newValue));
   };
+
   const handleSertChange = (e) => {
-    const newValue = e.target.value; // Remove leading and trailing whitespaces
+    const newValue = e.target.value;
     setSertifikat(newValue);
-
-    if (newValue.length > 0) {
-      setIsValidSert(true);
-    } else {
-      setIsValidSert(false);
-    }
+    setIsValidSert(nonWhitespaceRegex.test(newValue));
   };
+
   const handleKmChange = (e) => {
-    const newValue = e.target.value; // Remove leading and trailing whitespaces
+    const newValue = e.target.value;
     setKamarMandi(newValue);
-
-    if (newValue.length > 0) {
-      setIsValidKM(true);
-    } else {
-      setIsValidKM(false);
-    }
+    setIsValidKM(nonWhitespaceRegex.test(newValue));
   };
+
   const handleListrikChange = (e) => {
-    const newValue = e.target.value; // Remove leading and trailing whitespaces
+    const newValue = e.target.value;
     setListrik(newValue);
-
-    if (newValue.length > 0) {
-      setIsValidListrik(true);
-    } else {
-      setIsValidListrik(false);
-    }
+    setIsValidListrik(nonWhitespaceRegex.test(newValue));
   };
+
   const handleHadapChange = (e) => {
-    const newValue = e.target.value; // Remove leading and trailing whitespaces
+    const newValue = e.target.value;
     setHadap(newValue);
-
-    if (newValue.length > 0) {
-      setIsValidHadap(true);
-    } else {
-      setIsValidHadap(false);
-    }
+    setIsValidHadap(nonWhitespaceRegex.test(newValue));
   };
+
   const handleDescChange = (e) => {
-    const newValue = e.target.value; // Remove leading and trailing whitespaces
+    const newValue = e.target.value;
     setDeskripsi(newValue);
-
-    if (newValue.length > 0) {
-      setIsValidDes(true);
-    } else {
-      setIsValidDes(false);
-    }
+    setIsValidDes(nonWhitespaceRegex.test(newValue));
   };
+
   const handleKtChange = (e) => {
-    const newValue = e.target.value; // Remove leading and trailing whitespaces
+    const newValue = e.target.value;
     setKamarTidur(newValue);
-
-    if (newValue.length > 0) {
-      setIsValidKT(true);
-    } else {
-      setIsValidKT(false);
-    }
+    setIsValidKT(nonWhitespaceRegex.test(newValue));
   };
+
   const handleLtChange = (e) => {
-    const newValue = e.target.value; // Remove leading and trailing whitespaces
+    const newValue = e.target.value;
     setLuasTanah(newValue);
-
-    if (newValue.length > 0) {
-      setIsValidLt(true);
-    } else {
-      setIsValidLt(false);
-    }
+    setIsValidLt(nonWhitespaceRegex.test(newValue));
   };
+
   const handleLbChange = (e) => {
-    const newValue = e.target.value; // Remove leading and trailing whitespaces
+    const newValue = e.target.value;
     setLuasBangunan(newValue);
-
-    if (newValue.length > 0) {
-      setIsValidLb(true);
-    } else {
-      setIsValidLb(false);
-    }
+    setIsValidLb(nonWhitespaceRegex.test(newValue));
   };
-const handleKategoriChange = (e) => {
-  const newValue = e.target.value;
-  setKategori(newValue);
 
-  if (newValue.length > 0) {
-    setIsValidKategori(true);
-    // Tambahkan logika atau fungsi yang ingin dijalankan saat nilai valid
-    if (newValue === "Rumah") {
-    } else if (newValue === "Apartemen") {
-    } else if (newValue === "Tanah") {
-    } else if (newValue === "Office Space") {
-    } else if (newValue === "Kos") {
-    
-    }
-  } else {
-    setIsValidKategori(false);
-  }
-};
-const handleproductChange = (e) => {
-  const newValue = e.target.value;
-  setProduct(newValue);
+  const handleKategoriChange = (e) => {
+    const newValue = e.target.value;
+    setKategori(newValue);
+    setIsValidKategori(nonWhitespaceRegex.test(newValue));
+  };
 
-  if (newValue.length > 0) {
-    setIsValidProduct(true);
-    // Tambahkan logika atau fungsi yang ingin dijalankan saat nilai valid
-    if (newValue === "Primary") {
-    } else if (newValue === "Secondary") {
-    } 
-  } else {
-    setIsValidProduct(false);
-  }
+  const handleproductChange = (e) => {
+    const newValue = e.target.value;
+    setProduct(newValue);
+    setIsValidProduct(nonWhitespaceRegex.test(newValue));
+  };
 
+  const handleTransaksiChange = (e) => {
+    const newValue = e.target.value;
+    setJenisTransaksi(newValue);
+    setIsValidTransaksi(nonWhitespaceRegex.test(newValue));
+  };
 
-};
-const handleTransaksiChange = (e) => {
-  const newValue = e.target.value;
-  setJenisTransaksi(newValue);
+  const handlePPChange = (e) => {
+    const newValue = e.target.value;
+    setPerlengkapanProperti(newValue);
+    setIsValidPerProp(nonWhitespaceRegex.test(newValue));
+  };
 
-  if (newValue.length > 0) {
-    setIsValidTransaksi(true);
-    // Tambahkan logika atau fungsi yang ingin dijalankan saat nilai valid
-    if (newValue === "Jual") {
-    } else if (newValue === "Sewa") {
-    } 
-  } else {
-    setIsValidTransaksi(false);
-  }
-
-
-};
-const handlePPChange = (e) => {
-  const newValue = e.target.value;
-  setPerlengkapanProperti(newValue);
-
-  if (newValue.length > 0) {
-    setIsValidPerProp(true);
-    // Tambahkan logika atau fungsi yang ingin dijalankan saat nilai valid
-    if (newValue === "Furnished") {
-    } else if (newValue === "Unfurnish") {
-    } else if (newValue === "SemiFurnished") {
-    }
-  } else {
-    setIsValidPerProp(false);
-  }
-};
- 
-
-
-  
- 
   return (
     <section className="bg-[#ECECEC] ">
       <Head>
@@ -345,7 +245,7 @@ const handlePPChange = (e) => {
               />
               {!isNamaValid && (
                 <p className="mt-1 text-sm text-red-500">
-                  tolong diisi terlebih dahulu
+                  Tolong diisi terlebih dahulu
                 </p>
               )}
             </div>
@@ -405,7 +305,7 @@ const handlePPChange = (e) => {
               />
               {!isValidAlamat && (
                 <p className="mt-1 text-sm text-red-500">
-                  tolong diisi terlebih dahulu
+                  Tolong diisi terlebih dahulu
                 </p>
               )}
             </div>
@@ -430,7 +330,7 @@ const handlePPChange = (e) => {
                 </select>
                 {!isValidKategori && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong diisi terlebih dahulu
+                    Tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -451,7 +351,7 @@ const handlePPChange = (e) => {
                 </select>
                 {!isValidProduct && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong diisi terlebih dahulu
+                    Tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -471,10 +371,11 @@ const handlePPChange = (e) => {
                   <option value="">Pilih Jenis Transaksi</option>
                   <option value="jual">Jual</option>
                   <option value="sewa">Sewa</option>
+                  <option value="jual/sewa">Jual/Sewa</option>
                 </select>
                 {!isValidTransaksi && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong diisi terlebih dahulu
+                    Tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -498,7 +399,7 @@ const handlePPChange = (e) => {
                 </select>
                 {!isValidPerProp && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong diisi terlebih dahulu
+                    Tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -517,7 +418,7 @@ const handlePPChange = (e) => {
                 />
                 {!isValidHarga && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong diisi terlebih dahulu
+                    Tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -535,7 +436,7 @@ const handlePPChange = (e) => {
                 />
                 {!isValidSert && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong diisi terlebih dahulu
+                    Tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -556,7 +457,7 @@ const handlePPChange = (e) => {
                 />
                 {!isValidKM && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong diisi terlebih dahulu
+                    Tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -576,7 +477,7 @@ const handlePPChange = (e) => {
                 />
                 {!isValidKT && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong diisi terlebih dahulu
+                    Tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -595,7 +496,7 @@ const handlePPChange = (e) => {
                 />
                 {!isValidLt && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong diisi terlebih dahulu
+                    Tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -615,7 +516,7 @@ const handlePPChange = (e) => {
                 />
                 {!isValidLb && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong diisi terlebih dahulu
+                    Tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -633,7 +534,7 @@ const handlePPChange = (e) => {
                 />
                 {!isValidListrik && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong diisi terlebih dahulu
+                    Tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -652,7 +553,7 @@ const handlePPChange = (e) => {
                 />
                 {!isValidHadap && (
                   <p className="mt-1 text-sm text-red-500">
-                    tolong diisi terlebih dahulu
+                    Tolong diisi terlebih dahulu
                   </p>
                 )}
               </div>
@@ -672,7 +573,7 @@ const handlePPChange = (e) => {
               />
               {!isValidDes && (
                 <p className="mt-1 text-sm text-red-500">
-                  tolong diisi terlebih dahulu
+                  Tolong diisi terlebih dahulu
                 </p>
               )}
             </div>
@@ -688,6 +589,6 @@ const handlePPChange = (e) => {
       </div>
     </section>
   );
-}
+};
 
-export default PropertyForm
+export default PropertyForm;

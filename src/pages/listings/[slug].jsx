@@ -14,6 +14,8 @@ const DetailProduct = ({ products }) => {
     },
     modules: [Pagination],
   };
+
+  const hasStatus = products.status && products.status.length > 0;
   return (
     <>
       <section className="mobile:py-16 tablet:py-16">
@@ -53,7 +55,11 @@ const DetailProduct = ({ products }) => {
             </div>
           </div>
           <div className="flex flex-col Sdesktop:flex-row">
-            <div className="Sdesktop:w-[65%] Sdesktop:px-4 w-full">
+            <div
+              className={`Sdesktop:w-[65%] Sdesktop:px-4 w-full ${
+                hasStatus ? "brightness-75" : ""
+              }`}
+            >
               <Swiper {...swiperOptions} className="mySwiper">
                 {products.detail_image.map((imageUrl) => (
                   <SwiperSlide
@@ -61,11 +67,19 @@ const DetailProduct = ({ products }) => {
                     className="w-full pb-[75%] tablet:pb-[55%] rounded relative overflow-hidden"
                   >
                     <Link href={`/detail/${products.slug}`}>
+                      <div className="absolute inset-0 w-full h-full " />
                       <img
                         className="absolute inset-0 object-cover w-full h-full"
                         src={imageUrl.detail_images}
                         alt={imageUrl.id}
                       />
+                      {hasStatus && (
+                        <div className="absolute inset-0 flex items-center justify-center text-white uppercase">
+                          <p className="p-2 text-2xl font-bold text-white uppercase bg-black rounded ">
+                            {products.status[0].nama_status}
+                          </p>
+                        </div>
+                      )}
                     </Link>
                   </SwiperSlide>
                 ))}
@@ -91,7 +105,13 @@ const DetailProduct = ({ products }) => {
                   </h1>
 
                   <p>{products.title}</p>
-                  <p>Rp {products.harga}</p>
+                  <p>
+                    {hasStatus
+                      ? // Display nothing when status is present
+                        null
+                      : // Display the price when there is no status
+                        `Rp ${products.harga}`}
+                  </p>
                   <h4>
                     {products.kota.map((city) => (
                       <div key={city.id}>{city.name}</div>

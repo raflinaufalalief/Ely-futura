@@ -1,8 +1,8 @@
-import Link from "next/link"
-import { useEffect, useState } from "react"
-import { BiBath, BiBed } from "react-icons/bi"
-import Carousel from "react-multi-carousel"
-import "react-multi-carousel/lib/styles.css"
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { BiBath, BiBed } from "react-icons/bi";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const responsive = {
   desktop: {
@@ -20,27 +20,27 @@ const responsive = {
     items: 1,
     slidesToSlide: 1, // optional, default to 1.
   },
-}
+};
 
 function Product() {
-  const [products, setProducts] = useState()
+  const [products, setProducts] = useState();
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(process.env.NEXT_PUBLIC_API_URL)
-        const apiData = await response.json()
+        const response = await fetch(process.env.NEXT_PUBLIC_API_URL);
+        const apiData = await response.json();
         setProducts(apiData.products.slice(0, 6));
       } catch (error) {
-        console.error("Error fetching data:", error)
+        console.error("Error fetching data:", error);
       }
     }
 
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   if (!products) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   return (
@@ -115,9 +115,9 @@ function Product() {
                             <div key={type.id}>{type.name}</div>
                           ))}
                         </div>
-                        <p className="mt-2 text-sm text-black/80 line-clamp-1">
+                        {/* <p className="mt-2 text-sm text-black/80 line-clamp-1">
                           {product.area}
-                        </p>
+                        </p> */}
                       </div>
                       <div className="flex mt-2 text-sm">
                         <div className="flex space-x-5 overflow-hidden">
@@ -164,7 +164,7 @@ function Product() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default Product
+export default Product;

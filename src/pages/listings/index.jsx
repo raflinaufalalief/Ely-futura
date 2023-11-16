@@ -13,8 +13,8 @@ const ITEMS_PER_PAGE = 12;
 const ALERT_MESSAGE = "Mohon Maaf Property Belum Tersedia ";
 const ALERT_INFORMASI = "Pesan Informasi";
 const seo = {
+  ...defaultSEO,
   title: "All-listing | Koleksiproperty",
-  // ... (other SEO properties)
 };
 
 const getStatusLabel = (product) => {
@@ -103,12 +103,12 @@ const Listing = ({ initialProducts }) => {
                 <div key={product.id}>
                   <div
                     className={`relative w-full mx-auto ${
-                      isStatusAvailable(product) ? "brightness-50" : ""
+                      isStatusAvailable(product) ? "brightness-90" : ""
                     }`}
                   >
                     {isStatusAvailable(product) && (
                       <div className="absolute z-30 py-16 text-center inset-10">
-                        <p className="p-2 text-lg font-bold text-white uppercase bg-black border rounded">
+                        <p className="p-2 text-lg font-bold text-white uppercase bg-black rounded shadow-2xl">
                           {getStatusLabel(product)}
                         </p>
                       </div>
@@ -124,10 +124,7 @@ const Listing = ({ initialProducts }) => {
                             />
                           </div>
                         </div>
-                        {isStatusAvailable(product) ? (
-                          // If status is available, don't display market and status information
-                          <></>
-                        ) : (
+                        {isStatusAvailable(product) ? null : ( // If status is available, don't display market and status information
                           // Only display market information if status is not available
                           <span
                             className={`absolute top-0 left-0 z-10 inline-flex px-3 py-2 mt-3 ml-3 text-sm font-medium text-white bg-red-500 rounded select-none`}
